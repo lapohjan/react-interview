@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
 const todos = [
@@ -9,139 +9,136 @@ const todos = [
     {id: 5, name: 'Change car tyres', complete: false}
 ];
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            newTodoName: '',
-            todos: todos
-        };
+const App = () => {
+    const [newTodoName, setNewTodoName] = useState('');
+    const [todo, setTodo] = useState(todos);
+
+    function generateNewId() {
+        return todo.length + 1;
     }
 
-    generateNewId() {
-        return this.state.todos.length + 1;
-    }
-
-    onSubmit(event) {
+    function onSubmit(event) {
         event.preventDefault();
 
-        var newTodos = this.state.todos.slice();
+        let newTodos = todo.slice();
         newTodos.push({
-            id: this.generateNewId(),
-            name: this.state.newTodoName,
+            id: generateNewId(),
+            name: newTodoName,
             complete: false
         });
 
-        this.setState({todos: newTodos, newTodoName: ''});
+        setTodo(newTodos);
+        setNewTodoName('');
     }
 
-    onClick(id) {
-        var todoItems = this.state.todos.slice();
-        for (let i = 0; i < this.state.todos.length; i++) {
+    function onClick(id) {
+        const todoItems = todo.slice();
+        for (let i = 0; i < todo.length; i++) {
             if (todoItems[i].id === id) {
-                var newComplete = !todoItems[i].complete;
+                let newComplete = !todoItems[i].complete;
                 todoItems[i].complete = newComplete;
             }
         }
-
-        this.setState({
-            todos: todoItems
-        });
+        setTodo(todoItems)   
     }
 
-    onChange(event) {
-        this.setState({newTodoName: event.target.value});
+    function onChange(event) {
+        setNewTodoName(event.target.value);
     }
-    onRemoveClick(id) {
+
+    function onRemoveClick(id) {
         //implement this logic
         console.log('Remove Item!');
+        console.log(id);
     }
 
-    render() {
+    function TodoItems({ todo, onClick, onRemoveClick }) {
         return (
-            <div className="">
-                {this.todoItems()}
-                <Bar
-                    onSubmit={this.onSubmit.bind(this)}
-                    newTodoName={this.state.newTodoName}
-                    onInputChange={this.onChange.bind(this)}
+            <div>
+             { todo.map ((todo) => (
+               <Hello
+               key={todo.id}
+               todo={todo}
+               onClick={onClick}
+               onRemoveClick={onRemoveClick}
                 />
+               ))
+             }
             </div>
-        );
-    }
-
-    todoItems = () => {
-        var retVal = [];
-
-        for (let i = 0; i < this.state.todos.length; i++) {
-            var todo = this.state.todos[i];
-            retVal.push(
-                <Hello
-                    key={todo.id}
-                    todo={todo}
-                    onClick={this.onClick.bind(this)}
-                    onRemoveClick={this.onRemoveClick.bind(this)}
-                />
-            );
-        }
-        return retVal;
+             )
     };
+
+    
+    return (
+        <div>
+            <Bar
+                onSubmit={onSubmit}
+                newTodoName={newTodoName}
+                onInputChange={onChange}
+            />
+            <TodoItems
+                todo={todo}
+                onClick={onClick}
+                onRemoveClick={onRemoveClick}
+            />
+         </div>
+    );
+    
 }
 
-class Hello extends React.Component {
-    render() {
-        var color;
-        var text;
+function Hello({ todo, onClick, onRemoveClick }) {
+    console.log(todo);
+    let color;
+    let text;
 
-        if (this.props.todo.complete === true) {
-            color = 'lightgreen';
-            text = 'Complete';
-        } else {
-            color = 'pink';
-            text = 'Incomplete';
-        }
-
-        return (
-            <div className="wrapper" style={{backgroundColor: color}}>
-                <h3>{this.props.todo.name}</h3>
-                <button
-                    className="btn"
-                    onClick={() => this.props.onClick(this.props.todo.id)}>
-                    {text}
-                </button>
-                <button
-                    className="btn"
-                    onClick={() =>
-                        this.props.onRemoveClick(this.props.todo.id)
-                    }>
-                    Remove from list
-                </button>
-            </div>
-        );
+    if (todo.complete === true) {
+        color = 'lightgreen';
+        text = 'Complete';
+    } else {
+        color = 'pink';
+        text = 'Incomplete';
     }
+
+    return (
+        <div className="wrapper" style={{backgroundColor: color}}>
+            <h3>{todo.name}</h3>
+            <button
+                className="btn"
+                onClick={() => onClick(todo.id)}>
+                {text}
+            </button>
+            <button
+                className="btn"
+                onClick={() =>
+                    onRemoveClick(todo.id)
+                }>
+                Remove from list
+            </button>
+        </div>
+    );
 }
 
-class Bar extends React.Component {
-    render() {
-        return (
-            <form
-                className="wrapper"
-                style={{'grid-template-columns': '7fr 2fr'}}
-                onSubmit={this.props.onSubmit}>
-                <input
-                    placeholder="Add new todo"
-                    value={this.props.newTodoName}
-                    onChange={this.props.onInputChange}
-                />
-                <button
-                    className="btn btn-success"
-                    type="submit"
-                    value="Submit">
-                    Submit
-                </button>
-            </form>
-        );
-    }
+
+function Bar({ onSubmit, newTodoName, onInputChange }) {
+    return (
+        <form
+            className="wrapper"
+            style={{'grid-template-columns': '7fr 2fr'}}
+            onSubmit={onSubmit}>
+            <input
+                placeholder="Add new todo"
+                value={newTodoName}
+                onChange={onInputChange}
+            />
+            <button
+                className="btn btn-success"
+                type="submit"
+                value="Submit">
+                Submit
+            </button>
+        </form>
+    );
 }
+
 
 export default App;
