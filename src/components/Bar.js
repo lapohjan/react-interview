@@ -1,5 +1,6 @@
 import React from 'react'
 
+//Input form and sumbit button for adding a new todo
 const Bar = ({ onSubmit, newTodoName, onInputChange }) => {
     return (
       <form

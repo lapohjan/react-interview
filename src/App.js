@@ -15,6 +15,7 @@ const App = () => {
   const [newTodoName, setNewTodoName] = useState('');
   const [todo, setTodo] = useState(todos);
 
+  //add new todo to list when submitting form
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -29,6 +30,7 @@ const App = () => {
     setNewTodoName('');
   }
 
+  //click to mark a todo complete/incomplete
   const onClick = (id) => {
     const todoItems = todo.slice();
     for (let i = 0; i < todo.length; i++) {
@@ -40,13 +42,15 @@ const App = () => {
     setTodo(todoItems);
   }
 
+  //set name for the new todo
   const onChange = (event) => {
     setNewTodoName(event.target.value);
   }
 
+  //remove todo
   const onRemoveClick = (id) => {
-    //implement this logic
-    console.log('Remove Item!');
+    const remainingTodos = todo.filter(todo => todo.id !==id);
+    setTodo(remainingTodos)
   }
 
   return (

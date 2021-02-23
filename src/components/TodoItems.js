@@ -4,6 +4,7 @@ import Hello from './Hello'
 const TodoItems = ({ todo, onClick, onRemoveClick }) => {
   return (
     <div>
+      {/* map all the todos for Hello component */}
       {todo.map((todo) => (
         <Hello
           key={todo.id}

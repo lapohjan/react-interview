@@ -1,13 +1,14 @@
 import React from 'react'
 
 function Hello({ todo, onClick, onRemoveClick }) {
-    console.log(todo);
     let color;
     let text;
   
+    //If todo is complete: background is lightgreen & text is 'Complete'
     if (todo.complete === true) {
       color = 'lightgreen';
       text = 'Complete';
+    //If todo is not complete: background is pink & text is 'Incomplete'
     } else {
       color = 'pink';
       text = 'Incomplete';
