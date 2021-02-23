@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Hello({ todo, onClick, onRemoveClick }) {
+const TodoList = ({ todo, onClick, onRemoveClick }) => {
     let color;
     let text;
   
@@ -27,4 +27,4 @@ function Hello({ todo, onClick, onRemoveClick }) {
     );
   }
 
-  export default Hello
+  export default TodoList

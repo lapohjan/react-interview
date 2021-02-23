@@ -1,12 +1,12 @@
 import React from 'react'
-import Hello from './Hello'
+import TodoList from './TodoList'
 
 const TodoItems = ({ todo, onClick, onRemoveClick }) => {
   return (
     <div>
-      {/* map all the todos for Hello component */}
+      {/* map all the todos for TodoList component */}
       {todo.map((todo) => (
-        <Hello
+        <TodoList
           key={todo.id}
           todo={todo}
           onClick={onClick}
