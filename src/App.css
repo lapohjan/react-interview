@@ -2,42 +2,15 @@ body {
   margin: 40px auto;
   max-width: 480px;
   line-height: 1.6;
+  font-family: sans-serif;
   font-size: 18px;
   color: #444;
+  background-color: rgb(239, 238, 240);
   padding: 0;
 }
 
-h1, h3 {
-  text-align: center;
-}
-
-
-.wrapper {
-  display: grid;
-  grid-template-columns:  5fr 2fr 1fr;
-  border: solid 1px;
-  margin-bottom: 2px;
-}
-
-.complete {
-  color: #c4c4c4 
-}
-
-.btn {
-  background-color: #444;
-  border: none; 
-  color: white;
-  padding: 12px 16px;
+.todo {
+  margin-left: min(5px, 5%);
   font-size: 16px;
-  cursor: pointer;
-  margin-left: 1px;
-}
-
-.btn-complete {
-  background-color: #c4c4c4;
-  color: white; 
-}
-
-.btn-success {
-  background-color: green;
+  padding: 16px;
 }

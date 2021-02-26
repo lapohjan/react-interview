@@ -4,11 +4,11 @@ import TodoItems from './components/TodoItems'
 import Bar from './components/Bar'
 
 const todos = [
-  { id: 1, name: 'Go to the supermarket', complete: false },
-  { id: 2, name: 'Call Alice', complete: false },
-  { id: 3, name: 'Ask Alice to call Bob', complete: false },
-  { id: 4, name: 'Do the dishes', complete: false },
-  { id: 5, name: 'Change car tyres', complete: false },
+  {id: 1, name: 'Go to the supermarket', complete: false},
+  {id: 2, name: 'Call Alice', complete: false},
+  {id: 3, name: 'Ask Alice to call Bob', complete: false},
+  {id: 4, name: 'Do the dishes', complete: false},
+  {id: 5, name: 'Change car tyres', complete: false},
 ];
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
 
     setTodo(newTodos);
     setNewTodoName('');
-  }
+  };
 
   //click to mark a todo complete/incomplete
   const onClick = (id) => {
@@ -40,32 +40,33 @@ const App = () => {
       }
     }
     setTodo(todoItems);
-  }
+  };
 
   //set name for the new todo
   const onChange = (event) => {
     setNewTodoName(event.target.value);
-  }
+  };
 
   //remove todo
   const onRemoveClick = (id) => {
-    const remainingTodos = todo.filter(todo => todo.id !==id);
-    setTodo(remainingTodos)
-  }
+    const remainingTodos = todo.filter((todo) => todo.id !== id);
+    setTodo(remainingTodos);
+  };
 
   return (
     <div>
-      <Bar
-        onSubmit={onSubmit}
-        newTodoName={newTodoName}
-        onInputChange={onChange}
-      />
-      <TodoItems
-        todo={todo}
-        onClick={onClick}
-        onRemoveClick={onRemoveClick} />
+          <Bar
+            onSubmit={onSubmit}
+            newTodoName={newTodoName}
+            onInputChange={onChange}
+          />
+          <TodoItems
+            todo={todo}
+            onClick={onClick}
+            onRemoveClick={onRemoveClick}
+          />
     </div>
   );
 };
 
-export default App;
+export default App

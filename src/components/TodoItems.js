@@ -4,7 +4,7 @@ import TodoList from './TodoList'
 const TodoItems = ({ todo, onClick, onRemoveClick }) => {
   return (
     <div>
-      {/* map all the todos for TodoList component */}
+      {/* map all the todos for TodoList */}
       {todo.map((todo) => (
         <TodoList
           key={todo.id}
@@ -15,6 +15,6 @@ const TodoItems = ({ todo, onClick, onRemoveClick }) => {
       ))}
     </div>
   );
-}
+};
 
 export default TodoItems
