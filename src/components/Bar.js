@@ -12,37 +12,40 @@ const styles = {
     alignItems: 'center',
     marginTop: 10,
   },
-};
+  Input: {
+    width: '100%',
+  },
+}
 
-const Bar = ({ onSubmit, newTodoName, onInputChange }) => {
+const Bar = ({onSubmit, newTodoName, onInputChange}) => {
   return (
-    <Grid xs={12}>
-    <Paper elevation={2} style={styles.Paper}>
-    {/* Form for adding a new todo */}
-    <form onSubmit={onSubmit} style={{ display: 'flex' }}>
-      {/* Input field */}
-      <Input
-        required
-        placeholder="Add new todo"
-        value={newTodoName}
-        onChange={onInputChange}
-        inputProps={{ maxLength: 45 }}
-        style={{ width:'400px' }}
-      />
-      {/* Submit button */}
-      <Button
-        type="submit"
-        value="Submit"
-        variant="contained"
-        color="primary"
-        style={{ width: '10%' }}
-      >
-        Add
-      </Button>
-    </form>
-    </Paper>
+    <Grid item={true} xs={12}>
+      <Paper elevation={2} style={styles.Paper}>
+        {/* Form for adding a new todo */}
+        <form onSubmit={onSubmit} style={{display: 'flex', width: '100%' }}>
+          {/* Input field */}
+          <Input 
+            required
+            placeholder='Add new todo'
+            value={newTodoName}
+            onChange={onInputChange}
+            inputProps={{maxLength: 45}}
+            style={styles.Input}
+          />
+          {/* Submit button */}
+          <Button
+            type='submit'
+            value='Submit'
+            variant='contained'
+            color='primary'
+            style={{width: '10%'}}
+          >
+            Add
+          </Button>
+        </form>
+      </Paper>
     </Grid>
-  );
-};
+  )
+}
 
 export default Bar

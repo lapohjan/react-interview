@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoList from './TodoList'
 
-const TodoItems = ({ todo, onClick, onRemoveClick }) => {
+const TodoItems = ({todo, onClick, onRemoveClick}) => {
   return (
     <div>
       {/* map all the todos for TodoList */}
@@ -14,7 +14,7 @@ const TodoItems = ({ todo, onClick, onRemoveClick }) => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
 export default TodoItems

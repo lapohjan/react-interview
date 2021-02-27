@@ -27,14 +27,14 @@ const TodoList = ({ todo, onClick, onRemoveClick }) => {
 
   //If todo is complete, checkbox checked
   if (todo.complete === true) {
-    text = 'checked';
+    text = true;
     //If todo is not complete: checkbox unchecked
   } else {
-    text = '';
+    text = false;
   }
 
   return (
-    <Grid item xs={12}>
+    <Grid item={true} xs={12}>
       <Paper elevation={2} style={styles.Paper}>
         <Checkbox
           style={styles.Checkbox}
