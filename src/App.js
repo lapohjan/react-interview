@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import './App.css'
 import TodoItems from './components/TodoItems'
 import Bar from './components/Bar'
+import './App.css'
 
 const todos = [
   {id: 1, name: 'Go to the supermarket', complete: false},
